@@ -1,0 +1,111 @@
+/* --- FUNDAMENTAL: Para que la página ocupe el 100% de la altura --- */
+html, body {
+    height: 100%; /* HTML y Body deben ocupar el 100% de la altura de la ventana */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Organiza el header, el main-layout-container y el footer en columna */
+    min-height: 100vh; /* Asegura que el body sea al menos tan alto como la ventana (viewport height) */
+}
+
+/*# sourceMappingURL=app.css.map */
+.contenido-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    background-color: cadetblue;
+}
+
+.header div h1 {
+    margin-right: auto;
+    margin-left: 0;
+    
+} 
+
+.navegacion, a {
+    margin-right: 2rem;
+}
+
+.navegacion-vertical {
+    display: flex;
+    flex-direction: column; /* Para que los enlaces dentro de la nav se apilen verticalmente */
+    gap: 0.5rem; /* Espacio entre los enlaces */
+    padding: 15px;
+    background-color: #f0f0f0; /* Un color de fondo para que se vea */
+    width: 180px; /* Define el ancho fijo de tu barra lateral */
+    min-height: 100%; /* ¡CLAVE! Asegura que la nav sea al menos tan alta como su contenedor padre (.main-layout-container) */
+    box-sizing: border-box; /* Incluye padding en el ancho/alto */
+    flex-shrink: 0; /* Evita que la barra lateral se encoja si el contenido es demasiado ancho */
+
+    /* Otros estilos para tus enlaces*/
+    a {
+        text-decoration: none;
+        color: #333;
+        padding: 8px 0;
+        &:hover {
+            background-color: #e0e0e0;
+            color: #007bff;
+        }
+    }
+}
+
+.header {
+    /* ... Tus estilos existentes para el header ... */
+    flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+}
+.main-content {
+    flex-grow: 1; /* ¡CLAVE! Permite que el contenido principal ocupe todo el espacio horizontal restante */
+    padding: 20px; /* Espacio interno para el contenido */
+    overflow-y: auto; /* Si el contenido es muy largo, permite scroll solo en esta área */
+    background-color: #fff; /* Fondo para el área de contenido */
+    box-sizing: border-box;
+}
+
+.informacion-general {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+    background-color: #f9f9f9;
+}
+
+.informacion-general .text {
+    flex-grow: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+}
+
+.informacion-general img {
+    width: 350px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    /* ... Tus estilos para el footer ... */
+    flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
+    margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.contenido-vertical { /* Este es el div que contiene <nav class="navegacion-vertical"> y <main> */
+    display: flex; /* ¡CLAVE! Convierte este contenedor en un flexbox para alinear la nav vertical y el main */
+    flex-grow: 1; /* Permite que este contenedor ocupe TODO el espacio vertical restante entre el header y el footer */
+    /* Puedes añadir padding o background a este div si quieres que afecte toda la sección principal */
+}
+.destacado {
+    text-align: center;
+}
