@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/src/css/app.css">
+        <link rel="stylesheet" href="../src/css/app.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -14,20 +14,23 @@
         <!--Encabesado-->
         <header class="header">
             <div class="contenedor contenido-header">
-                <h1>A Todo App</h1>
-
-                <nav class="navegacion">
-                    <a href="/nosotros/nosotros.html">Nosotros</a>
-                    <a href="/contactos/contactos.html">Contacto</a>
-                    <a href="#">Mi usuario</a>
+                <nav class="mi-menu">
+                    <nav class="navegacion">
+                        <a class="inicio" href="/index.html">
+                            <h1>Inicio</h1>
+                        </a>
+                        <a href="/nosotros/nosotros.html">Nosotros</a>
+                        <a href="/contactos/contactos.html">Contacto</a>
+                        <a href="#">Mi usuario</a>
+                    </nav>
                 </nav>
             </div>
         </header>
         <div class="contenido-vertical">   
             <nav class="navegacion-vertical"> 
-                <a href="/comunidad/comonidad.html">Comunidad</a>
+                <a href="#">Foros</a>
                 <a href="#">Noticias</a>
-                <a href="/eventos/eventos.html">Eventos</a>
+                <a href="#">Eventos</a>
             </nav>
 
             <main>
@@ -44,10 +47,5 @@
                 </section>
             </main>
         </div>
-        <footer>
-            <h1>
-                Redes
-            </h1>
-        </footer>
     </body>
 </html>
