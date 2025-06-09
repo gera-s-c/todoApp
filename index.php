@@ -1,5 +1,6 @@
 <?php
 
+
 require 'db.php';
 
 //consulta registro de base de datos
@@ -7,20 +8,55 @@ $sql = "SELECT * FROM CRUD ORDER BY id DESC";
 $result = $con->query($sql);
 
 
+
+session_start(); // Siempre inicia la sesión al principio de la página
+
+// Comprueba si el usuario ha iniciado sesión.
+// Si la variable de sesión 'user_id' NO está configurada,
+// significa que el usuario no está logueado.
+if (!isset($_SESSION['user_id'])) {
+    // Redirige al usuario a la página de inicio de sesión
+    header("Location: /usuarios/inicioSesion.php"); // Asegúrate que esta ruta sea correcta
+    exit(); // Es crucial terminar la ejecución del script después de la redirección
+}
+
+// *** Si el código llega hasta aquí, el usuario ESTÁ logueado. ***
+// Ahora sí podemos definir variables de sesión y conectar a la base de datos, etc.
+
+$user_name = isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Usuario';
+$user_email = isset($_SESSION['user_email']) ? htmlspecialchars($_SESSION['user_email']) : 'No disponible';
+
+// *** MOVER LA CONEXIÓN Y EL CIERRE DE LA DB AQUÍ ***
+// Solo si planeas usar la conexión a la DB en esta página para algo.
+// Si solo la incluiste por inercia, lo mejor es quitarla.
+// Si ya tienes un 'db.php', es mejor usar 'require_once 'db.php';'
+// en lugar de redefinir la conexión aquí.
+
+// Ejemplo si mantienes la conexión aquí y la necesitas para algo:
+
 // Datos de conexión a la base de datos de Laragon
 $servername = "localhost"; // O 127.0.0.1
 $username = "root";        // Usuario de la base de datos en Laragon
 $password = "";            // Contraseña (vacía por defecto en Laragon)
-$dbname = "todoApp"; // ¡El nombre de tu base de datos en Laragon!
+$dbname = "todoApp";       // ¡El nombre de tu base de datos en Laragon!
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$conn->close();
+// Manejo de error de conexión (opcional, pero buena práctica)
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// *** NO CERRAR LA CONEXIÓN INMEDIATAMENTE ***
+// Solo cierra la conexión si no vas a hacer más consultas EN ESTA PÁGINA.
+// Por ejemplo, al final de la página si hiciste consultas, o en el logout.
+// Si no haces consultas en index.php, puedes quitar la conexión por completo de aquí.
+// $conn->close(); // Si la cierras aquí, no podrás usarla para nada después.
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,23 +76,13 @@ $conn->close();
         <link rel="stylesheet" href="/src/css/app.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
         <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <title>Todo Applet</title>
     </head>
     <body>
-        <div class="container">
-            <h1>Bienvenido a mi Aplicación</h1>
-            <p>Esta es la página principal de tu proyecto.</p>
-            <p>Para usar la aplicación, por favor:</p>
-            <p><a href="/usuarios/inicioSesion.php">Iniciar Sesión</a></p>
-            <p>¿No tienes una cuenta? <a href="/usuarios/registro.php">Registrarse</a></p>
-        </div>
-        <!--Encabesado-->
         <header class="header">
             <div class="contenedor contenido-header">
                 <h1>A Todo App</h1>
-
                 <nav class="navegacion">
                     <a href="/nosotros/nosotros.html">Nosotros</a>
                     <a href="/contactos/contactos.html">Contacto</a>
@@ -70,12 +96,13 @@ $conn->close();
                 </nav>
             </div>
         </header>
-        <div class="contenido-vertical">   
+        <div class="contenido-vertical">  
             <nav class="navegacion-vertical"> 
                 <a href="/comunidad/comonidad.html">Comunidad</a>
-                <a href="#">Noticias</a>
+                <a href="/noticias/noticias.html">Noticias</a>
                 <a href="/eventos/eventos.html">Eventos</a>
             </nav>
+
 
             <main class="main-content">
                 <div class="contenedo-nuevo">
@@ -127,8 +154,10 @@ $conn->close();
                     <img src="src/img/paisaje.jpg" alt="Descripcion de la imagen">
 
 
+
+
             <main>
-                <p class="destacado">Lo mas destacado de la semna </p>
+                <p class="destacado">Lo mas destacado de la semana </p>
                 <section class="informacion-general">
                     <img src="/src/img/paisaje.jpg" alt="Descripcion de la imagen">
                     <p class="text">Lorem ipsum dolor sit amet consectetur 
@@ -139,12 +168,41 @@ $conn->close();
                         dicta dolorum repudiandae?
                     </p>
                 </section>
+                <p class="destacado">Comunidad de la semana</p>
+                <section class="informacion-general">
+                    <img src="/src/img/comunidad.jpg" alt="Descripcion de la imagen">
+                    <p class="text">Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Repellat vero dolores 
+                        inventore expedita dolorem at minus quisquam 
+                        asperiores. Similique, temporibus distinctio! 
+                        Possimus dolor, ratione labore tenetur reprehenderit 
+                        dicta dolorum repudiandae?
+                    </p>
+                </section>
+                </section>
+                <p class="destacado">Usuario mas destacado</p>
+                <section class="informacion-general">
+                    <img src="/src/img/usuario.png" alt="Descripcion de la imagen">
+                    <p class="text">Lorem ipsum dolor sit amet consectetur 
+                        adipisicing elit. Repellat vero dolores 
+                        inventore expedita dolorem at minus quisquam 
+                        asperiores. Similique, temporibus distinctio! 
+                        Possimus dolor, ratione labore tenetur reprehenderit 
+                        dicta dolorum repudiandae?
+                    </p>
+                </section>      
             </main>
+            
         </div>
         <footer>
-            <h1>
-                Redes
-            </h1>
+            <h1>Redes</h1>
         </footer>
     </body>
 </html>
+<?php
+// Si conectaste a la DB y necesitas cerrarla al final de la página, hazlo aquí.
+// Pero en una página solo de display como esta, si no haces consultas, es redundante.
+if (isset($conn) && $conn->ping()) { // Comprueba si la conexión existe y es válida
+    $conn->close();
+}
+?>
