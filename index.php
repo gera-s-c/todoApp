@@ -93,6 +93,7 @@ if ($conn->connect_error) {
                     <a href="/nosotros/nosotros.html">Nosotros</a>
                     <a href="/contactos/contactos.html">Contacto</a>
                     <a href="/mi usuario/miUsuario.html">Mi usuario</a>
+                    <a href="/mi usuario/miUsuario.PHP">Mi usuario</a>
                 </nav>
             </div>
         </header>
