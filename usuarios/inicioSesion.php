@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $user['usuario_contraseña'])) {
                 // Contraseña correcta: iniciar sesión del usuario
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['name'];
-                $_SESSION['user_email'] = $user['email'];
+                $_SESSION['user_name'] = $user['usuario_nombre'];
+                $_SESSION['user_email'] = $user['usuario_email'];
 
-                header("Location: autenticarUsuario.php"); // Redirige a la página de dashboard
+                header("Location: ../index.php"); // Redirige a la página de dashboard
                 exit();
             } else {
                 $message = '<p style="color: red;">Contraseña incorrecta.</p>';

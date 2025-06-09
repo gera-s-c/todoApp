@@ -6,6 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: inicioSesion.php");
     exit();
 }
+
+$user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Usuario';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="container">
-        <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>!</h2>
+        <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</h2>
         <p>Has iniciado sesión exitosamente.</p>
         <p><a href="/usuarios/cierreSesion.php">Cerrar Sesión</a></p>
         </div>
