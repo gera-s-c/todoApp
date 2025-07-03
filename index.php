@@ -39,6 +39,8 @@ $result = $conn->query($sql);
             </nav>
             <main>
                 <p class="destacado">Lo mas destacado de la semna </p>
+                <h2>Agregar nueva tarea</h2>
+                <form action=""></form>
                 <table>
                     <thead>
                         <tr>
