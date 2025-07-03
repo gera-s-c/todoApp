@@ -1,0 +1,12 @@
+@use '../base/mixins.scss' as *;
+@use '../base/variables.scss' as *;
+
+footer {
+    /* ... Tus estilos para el footer ... */
+    flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
+    margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}

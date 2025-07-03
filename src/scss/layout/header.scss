@@ -1,0 +1,23 @@
+@use '../base/mixins.scss' as *;
+@use '../base/variables.scss' as *;
+
+.header {
+    /* ... Tus estilos existentes para el header ... */
+    flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+}
+
+.header div h1 {
+    margin-right: auto;    
+} 
+
+
+
+
+.contenido-header {
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    background-color: cadetblue;
+}

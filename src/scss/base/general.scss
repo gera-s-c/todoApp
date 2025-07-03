@@ -40,25 +40,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.header div h1 {
-    margin-right: auto;
-    margin-left: 0;
-    
-} 
 
-
-.header {
-    /* ... Tus estilos existentes para el header ... */
-    flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
-}
-
-.contenido-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    background-color: cadetblue;
-}
 
 
 .main-content {
@@ -70,15 +52,7 @@ body {
 }
 
 
-footer {
-    /* ... Tus estilos para el footer ... */
-    flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
-    margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
+
 
 .contenido-vertical { /* Este es el div que contiene <nav class="navegacion-vertical"> y <main> */
     display: flex; /* ¡CLAVE! Convierte este contenedor en un flexbox para alinear la nav vertical y el main */
@@ -92,3 +66,48 @@ footer {
 .mi-menu {
   text-align: right; /* Alinea el contenido en línea/en línea-bloque a la derecha */
 }
+
+.contenedor-create {
+    text-align: center;
+}
+
+.contenedo-nuevo {
+  display: inline-block; /* para que tome bien las dimensiones */
+  float: right;          /* lo mueve al extremo derecho */
+  margin: 10px 0;        /* un poco de espacio arriba y abajo */
+  /* estilos extras que quieras, por ejemplo: */
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.cuadro-tabla {
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px 3rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.cuadro-crud {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cuadro-crud th,
+.cuadro-crud td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cuadro-crud th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+
