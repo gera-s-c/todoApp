@@ -67,43 +67,57 @@ body {
   text-align: center;
 }
 
-.contenedo-nuevo {
-  display: inline-block; /* para que tome bien las dimensiones */
-  float: right; /* lo mueve al extremo derecho */
-  margin: 10px 0; /* un poco de espacio arriba y abajo */
-  /* estilos extras que quieras, por ejemplo: */
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
+.navegacion, a {
+  margin-right: 2rem;
+}
+
+.navegacion-vertical {
+  display: flex;
+  flex-direction: column; /* Para que los enlaces dentro de la nav se apilen verticalmente */
+  gap: 0.5rem; /* Espacio entre los enlaces */
+  padding: 15px;
+  background-color: #f0f0f0; /* Un color de fondo para que se vea */
+  width: 180px; /* Define el ancho fijo de tu barra lateral */
+  min-height: 100%; /* ¡CLAVE! Asegura que la nav sea al menos tan alta como su contenedor padre (.main-layout-container) */
+  box-sizing: border-box; /* Incluye padding en el ancho/alto */
+  flex-shrink: 0; /* Evita que la barra lateral se encoja si el contenido es demasiado ancho */
+}
+.navegacion-vertical a {
   text-decoration: none;
+  color: #333;
+  padding: 8px 0;
+}
+.navegacion-vertical a:hover {
+  background-color: #e0e0e0;
+  color: #007bff;
 }
 
-.cuadro-tabla {
-  max-width: 100%;
-  margin: 20px auto;
+footer {
+  /* ... Tus estilos para el footer ... */
+  flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
+  margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
   padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
+  background-color: #333;
+  color: white;
+  text-align: center;
 }
 
-.cuadro-crud {
+.header {
+  /* ... Tus estilos existentes para el header ... */
+  flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+}
+
+.header div h1 {
+  margin-right: auto;
+}
+
+.contenido-header {
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
-  border-collapse: collapse;
-}
-
-.cuadro-crud th,
-.cuadro-crud td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.cuadro-crud th {
-  background-color: #f4f4f4;
-  font-weight: bold;
+  background-color: cadetblue;
 }
 
 .contenedor-create {
@@ -147,84 +161,6 @@ body {
   border-radius: 4px;
 }
 
-.cuadro-tabla {
-  max-width: 100%;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-}
 
-.cuadro-crud {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.cuadro-crud th,
-.cuadro-crud td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.cuadro-crud th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-footer {
-  /* ... Tus estilos para el footer ... */
-  flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
-  margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  text-align: center;
-}
-
-.header {
-  /* ... Tus estilos existentes para el header ... */
-  flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
-}
-
-.header div h1 {
-  margin-right: auto;
-}
-
-.contenido-header {
-  margin-right: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  background-color: cadetblue;
-}
-
-.navegacion, a {
-  margin-right: 2rem;
-}
-
-.navegacion-vertical {
-  display: flex;
-  flex-direction: column; /* Para que los enlaces dentro de la nav se apilen verticalmente */
-  gap: 0.5rem; /* Espacio entre los enlaces */
-  padding: 15px;
-  background-color: #f0f0f0; /* Un color de fondo para que se vea */
-  width: 180px; /* Define el ancho fijo de tu barra lateral */
-  min-height: 100%; /* ¡CLAVE! Asegura que la nav sea al menos tan alta como su contenedor padre (.main-layout-container) */
-  box-sizing: border-box; /* Incluye padding en el ancho/alto */
-  flex-shrink: 0; /* Evita que la barra lateral se encoja si el contenido es demasiado ancho */
-}
-.navegacion-vertical a {
-  text-decoration: none;
-  color: #333;
-  padding: 8px 0;
-}
-.navegacion-vertical a:hover {
-  background-color: #e0e0e0;
-  color: #007bff;
-}
 
 /*# sourceMappingURL=app.css.map */

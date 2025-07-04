@@ -42,7 +42,7 @@ $result = $conn->query($sql);
             <main>
                 <p class="destacado">Lo mas destacado de la semna </p>
                 <div class="contenedo-nuevo">
-                    <a href="db/create.php" class="button nuevo">Nuevo</a>
+                    <a href="crud/create.php" class="button nuevo">Nuevo</a>
                 </div>
                 <div class="cuadro-table">
                     <table class="cuadro-crud">
@@ -62,8 +62,8 @@ $result = $conn->query($sql);
                                         <td><?= htmlspecialchars($row['title']) ?></td>
                                         <td><?= $row['created_at'] ?></td>
                                         <td>
-                                            <a href="/db/update.php?id=<?= $row['id'] ?>" class="button fa-solid fa-file"></a>
-                                            <a href="db/delete.php?id=<?= $row['id'] ?>" class="button delete fa-solid fa-trash" onclick="return confirm('¿Estas seguro de eliminar esta tarea?');"></a>
+                                            <a href="crud/update.php?id=<?= $row['id'] ?>" class="button fa-solid fa-file"></a>
+                                            <a href="crud/delete.php?id=<?= $row['id'] ?>" class="button delete fa-solid fa-trash" onclick="return confirm('¿Estas seguro de eliminar esta tarea?');"></a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

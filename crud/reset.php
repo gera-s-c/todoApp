@@ -8,6 +8,6 @@ $conn->query("DELETE FROM CRUD");
 $conn->query("ALTER TABLE CRUD AUTO_INCREMENT = 1");
 
 // Redirige al inicio
-header("Location: index.php");
+header("Location: ../index.php");
 exit;
 ?>
