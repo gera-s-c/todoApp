@@ -3,7 +3,8 @@ require 'db.php';
 
 //consulta registro de base de datos
 $sql = "SELECT * FROM CRUD ORDER BY id DESC";
-$result = $conn->query($sql);
+$result = $con->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -39,17 +40,19 @@ $result = $conn->query($sql);
                 <a href="#">Noticias</a>
                 <a href="/eventos/eventos.html">Eventos</a>
             </nav>
-            <main>
-                <p class="destacado">Lo mas destacado de la semna </p>
+            <main class="main-content">
                 <div class="contenedo-nuevo">
                     <a href="crud/create.php" class="button nuevo">Nuevo</a>
                 </div>
-                <div class="cuadro-table">
+                <div class="cuadro-tabla">
                     <table class="cuadro-crud">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Titulo</th>
+                                <th>Nro</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Tarea</th>
+                                <th>Descripcion</th>
                                 <th>Fecha</th>
                                 <th>Accion</th>
                             </tr>
@@ -59,9 +62,13 @@ $result = $conn->query($sql);
                                 <?php while($row = $result->fetch_assoc()): ?>
                                     <tr>
                                         <td><?= $row['id'] ?></td>
-                                        <td><?= htmlspecialchars($row['title']) ?></td>
+                                        <td><?= $row['nombre'] ?></td>
+                                        <td><?= $row['apellido'] ?></td>
+                                        <td><?= isset($row['title']) ? htmlspecialchars($row['title']) : '' ?></td>
+                                        <td><?= isset($row['descripcion']) ? htmlspecialchars($row['descripcion']) : '' ?></td>
                                         <td><?= $row['created_at'] ?></td>
                                         <td>
+                                            <a href="crud/ver.php?id=<?= $row['id'] ?>" class="fa-solid fa-eye"></a> 
                                             <a href="crud/update.php?id=<?= $row['id'] ?>" class="button fa-solid fa-file"></a>
                                             <a href="crud/delete.php?id=<?= $row['id'] ?>" class="button delete fa-solid fa-trash" onclick="return confirm('¿Estas seguro de eliminar esta tarea?');"></a>
                                         </td>

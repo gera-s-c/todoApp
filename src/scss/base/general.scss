@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column; /* Organiza el header, el main-layout-container y el footer en columna */
     min-height: 100vh; /* Asegura que el body sea al menos tan alto como la ventana (viewport height) */
+
 }
 
 .inicio {
@@ -49,6 +50,7 @@ body {
     overflow-y: auto; /* Si el contenido es muy largo, permite scroll solo en esta área */
     background-color: #fff; /* Fondo para el área de contenido */
     box-sizing: border-box;
+ 
 }
 
 
@@ -72,42 +74,27 @@ body {
 }
 
 .contenedo-nuevo {
-  display: inline-block; /* para que tome bien las dimensiones */
-  float: right;          /* lo mueve al extremo derecho */
-  margin: 10px 0;        /* un poco de espacio arriba y abajo */
-  /* estilos extras que quieras, por ejemplo: */
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
+    display:inline-block;            // Cambiado de inline-block a inline-flex
+    justify-content: center;        // Centra el contenido horizontalmente
+    align-items: center;  
+    flex: content;          /* lo mueve al extremo derecho */
+    margin: 10px 0;        /* un poco de espacio arriba y abajo */
+    /* estilos extras que quieras, por ejemplo: */
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 8px;
+    border-radius: 2px;
+    text-decoration: none;
+    align-items: center;  
 }
 
-.cuadro-tabla {
-  max-width: 100%;
-  margin: 20px auto;
-  padding: 20px 3rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
+.contenedor-padre {
+    display: flex;
+    justify-content: flex-end; /* Mueve el contenido (botón) a la derecha */
 }
 
-.cuadro-crud {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-.cuadro-crud th,
-.cuadro-crud td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
 
-.cuadro-crud th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
+
 
 

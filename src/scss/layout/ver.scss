@@ -1,0 +1,23 @@
+.informacion {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;      /* Borde gris claro */
+    padding: 30px;               /* Espacio interno */
+    border-radius: 10px;         /* 🔄 Esquinas redondeadas */
+    width: 310px;                /* Ajusta el ancho según necesites */
+    background-color: #f9f9f9;   /* Fondo opcional para que resalte */
+    margin: 20px auto;           /* Centrado automático */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra sutil opcional */    
+
+  .campo {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+        
+  }
+}
+
+.volver {
+    text-align: right;
+}

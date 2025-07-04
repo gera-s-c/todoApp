@@ -1,0 +1,17 @@
+.contenedor-tarea {
+    text-align: center;
+}
+
+.cuadro {
+    border: 1px solid #ccc;      /* Borde gris claro */
+    padding: 30px;               /* Espacio interno */
+    border-radius: 10px;         /* 🔄 Esquinas redondeadas */
+    width: 310px;                /* Ajusta el ancho según necesites */
+    background-color: #f9f9f9;   /* Fondo opcional para que resalte */
+    margin: 20px auto;           /* Centrado automático */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra sutil opcional */
+}
+
+body {
+            background-color: #2c2c2c; /* Gris oscuro */ 
+}

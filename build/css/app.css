@@ -67,6 +67,81 @@ body {
   text-align: center;
 }
 
+.contenedo-nuevo {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  flex: content; /* lo mueve al extremo derecho */
+  margin: 10px 0; /* un poco de espacio arriba y abajo */
+  /* estilos extras que quieras, por ejemplo: */
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+  align-items: center;
+}
+
+.contenedor-padre {
+  display: flex;
+  justify-content: flex-end; /* Mueve el contenido (botón) a la derecha */
+}
+
+.cuadro-tabla {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.cuadro-crud {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cuadro-crud th,
+.cuadro-crud td {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.contenedo-nuevo {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+footer {
+  /* ... Tus estilos para el footer ... */
+  flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
+  margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
+  padding: 2px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+.header {
+  /* ... Tus estilos existentes para el header ... */
+  flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+}
+
+.header div h1 {
+  margin-right: auto;
+}
+
+.contenido-header {
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  background-color: cadetblue;
+}
+
 .navegacion, a {
   margin-right: 2rem;
 }
@@ -92,75 +167,44 @@ body {
   color: #007bff;
 }
 
-footer {
-  /* ... Tus estilos para el footer ... */
-  flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
-  margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
-  padding: 20px;
-  background-color: #333;
-  color: white;
+.contenedor-tarea {
   text-align: center;
 }
 
-.header {
-  /* ... Tus estilos existentes para el header ... */
-  flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+.cuadro {
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 30px; /* Espacio interno */
+  border-radius: 10px; /* 🔄 Esquinas redondeadas */
+  width: 310px; /* Ajusta el ancho según necesites */
+  background-color: #f9f9f9; /* Fondo opcional para que resalte */
+  margin: 20px auto; /* Centrado automático */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil opcional */
 }
 
-.header div h1 {
-  margin-right: auto;
+body {
+  background-color: #2c2c2c; /* Gris oscuro */
 }
 
-.contenido-header {
-  margin-right: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  background-color: cadetblue;
+.informacion {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 30px; /* Espacio interno */
+  border-radius: 10px; /* 🔄 Esquinas redondeadas */
+  width: 310px; /* Ajusta el ancho según necesites */
+  background-color: #f9f9f9; /* Fondo opcional para que resalte */
+  margin: 20px auto; /* Centrado automático */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil opcional */
 }
-
-.contenedor-create {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.contenedor-create h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.cuadro label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-.cuadro input[type=text],
-.cuadro textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+.informacion .campo {
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.cuadro input[type=submit] {
-  margin-top: 20px;
   padding: 10px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background-color: #fff;
 }
 
-
+.volver {
+  text-align: right;
+}
 
 /*# sourceMappingURL=app.css.map */
