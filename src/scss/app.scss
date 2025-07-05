@@ -1,0 +1,10 @@
+@use 'base/general'; 
+@use 'base/mixins.scss' as *;
+@use 'base/variables' as *;
+
+@use 'layout/create';
+@use 'layout/footer';
+@use 'layout/header';
+@use 'layout/navegacion';
+@use 'layout/tarea';
+@use 'layout/ver';

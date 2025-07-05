@@ -1,0 +1,210 @@
+@charset "UTF-8";
+html, body {
+  height: 100%; /* HTML y Body deben ocupar el 100% de la altura de la ventana */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Organiza el header, el main-layout-container y el footer en columna */
+  min-height: 100vh; /* Asegura que el body sea al menos tan alto como la ventana (viewport height) */
+}
+
+.inicio {
+  display: inline-block; /* Esto lo hace respetable para text-align */
+}
+
+.informacion-general {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-top: 30px;
+  background-color: #f9f9f9;
+}
+
+.informacion-general .text {
+  flex-grow: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  text-align: justify;
+}
+
+.informacion-general img {
+  width: 350px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  flex-grow: 1; /* ¡CLAVE! Permite que el contenido principal ocupe todo el espacio horizontal restante */
+  padding: 20px; /* Espacio interno para el contenido */
+  overflow-y: auto; /* Si el contenido es muy largo, permite scroll solo en esta área */
+  background-color: #fff; /* Fondo para el área de contenido */
+  box-sizing: border-box;
+}
+
+.contenido-vertical { /* Este es el div que contiene <nav class="navegacion-vertical"> y <main> */
+  display: flex; /* ¡CLAVE! Convierte este contenedor en un flexbox para alinear la nav vertical y el main */
+  flex-grow: 1; /* Permite que este contenedor ocupe TODO el espacio vertical restante entre el header y el footer */
+  /* Puedes añadir padding o background a este div si quieres que afecte toda la sección principal */
+}
+
+.destacado {
+  text-align: center;
+}
+
+.mi-menu {
+  text-align: right; /* Alinea el contenido en línea/en línea-bloque a la derecha */
+}
+
+.contenedor-create {
+  text-align: center;
+}
+
+.contenedo-nuevo {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  flex: content; /* lo mueve al extremo derecho */
+  margin: 10px 0; /* un poco de espacio arriba y abajo */
+  /* estilos extras que quieras, por ejemplo: */
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+  align-items: center;
+}
+
+.contenedor-padre {
+  display: flex;
+  justify-content: flex-end; /* Mueve el contenido (botón) a la derecha */
+}
+
+.cuadro-tabla {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.cuadro-crud {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cuadro-crud th,
+.cuadro-crud td {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black;
+}
+
+.contenedo-nuevo {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 8px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+footer {
+  /* ... Tus estilos para el footer ... */
+  flex-shrink: 0; /* Evita que el footer se encoja si el espacio es limitado */
+  margin-top: auto; /* Opcional: empuja el footer al final si el contenido es corto */
+  padding: 2px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+
+.header {
+  /* ... Tus estilos existentes para el header ... */
+  flex-shrink: 0; /* Evita que el header se encoja si el espacio es limitado */
+}
+
+.header div h1 {
+  margin-right: auto;
+}
+
+.contenido-header {
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  background-color: cadetblue;
+}
+
+.navegacion, a {
+  margin-right: 2rem;
+}
+
+.navegacion-vertical {
+  display: flex;
+  flex-direction: column; /* Para que los enlaces dentro de la nav se apilen verticalmente */
+  gap: 0.5rem; /* Espacio entre los enlaces */
+  padding: 15px;
+  background-color: #f0f0f0; /* Un color de fondo para que se vea */
+  width: 180px; /* Define el ancho fijo de tu barra lateral */
+  min-height: 100%; /* ¡CLAVE! Asegura que la nav sea al menos tan alta como su contenedor padre (.main-layout-container) */
+  box-sizing: border-box; /* Incluye padding en el ancho/alto */
+  flex-shrink: 0; /* Evita que la barra lateral se encoja si el contenido es demasiado ancho */
+}
+.navegacion-vertical a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 0;
+}
+.navegacion-vertical a:hover {
+  background-color: #e0e0e0;
+  color: #007bff;
+}
+
+.contenedor-tarea {
+  text-align: center;
+}
+
+.cuadro {
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 30px; /* Espacio interno */
+  border-radius: 10px; /* 🔄 Esquinas redondeadas */
+  width: 310px; /* Ajusta el ancho según necesites */
+  background-color: #f9f9f9; /* Fondo opcional para que resalte */
+  margin: 20px auto; /* Centrado automático */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil opcional */
+}
+
+body {
+  background-color: #2c2c2c; /* Gris oscuro */
+}
+
+.informacion {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 30px; /* Espacio interno */
+  border-radius: 10px; /* 🔄 Esquinas redondeadas */
+  width: 310px; /* Ajusta el ancho según necesites */
+  background-color: #f9f9f9; /* Fondo opcional para que resalte */
+  margin: 20px auto; /* Centrado automático */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil opcional */
+}
+.informacion .campo {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.volver {
+  text-align: right;
+}
+
+/*# sourceMappingURL=app.css.map */

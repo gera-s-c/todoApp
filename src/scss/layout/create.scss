@@ -1,0 +1,33 @@
+.cuadro-tabla {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+
+.cuadro-crud {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+
+
+.cuadro-crud th,
+.cuadro-crud td {
+  border: 1px solid black;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black; // podés quitar o cambiar si querés borde inferior igual
+}
+
+.contenedo-nuevo {  
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 8px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+

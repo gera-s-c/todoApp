@@ -1,0 +1,100 @@
+html, body {
+    height: 100%; /* HTML y Body deben ocupar el 100% de la altura de la ventana */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Organiza el header, el main-layout-container y el footer en columna */
+    min-height: 100vh; /* Asegura que el body sea al menos tan alto como la ventana (viewport height) */
+
+}
+
+.inicio {
+  display: inline-block; /* Esto lo hace respetable para text-align */
+}
+
+.informacion-general {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+    background-color: #f9f9f9;
+}
+
+.informacion-general .text {
+    flex-grow: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+}
+
+.informacion-general img {
+    width: 350px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.main-content {
+    flex-grow: 1; /* ¡CLAVE! Permite que el contenido principal ocupe todo el espacio horizontal restante */
+    padding: 20px; /* Espacio interno para el contenido */
+    overflow-y: auto; /* Si el contenido es muy largo, permite scroll solo en esta área */
+    background-color: #fff; /* Fondo para el área de contenido */
+    box-sizing: border-box;
+ 
+}
+
+
+
+
+.contenido-vertical { /* Este es el div que contiene <nav class="navegacion-vertical"> y <main> */
+    display: flex; /* ¡CLAVE! Convierte este contenedor en un flexbox para alinear la nav vertical y el main */
+    flex-grow: 1; /* Permite que este contenedor ocupe TODO el espacio vertical restante entre el header y el footer */
+    /* Puedes añadir padding o background a este div si quieres que afecte toda la sección principal */
+}
+.destacado {
+    text-align: center;
+}
+
+.mi-menu {
+  text-align: right; /* Alinea el contenido en línea/en línea-bloque a la derecha */
+}
+
+.contenedor-create {
+    text-align: center;
+}
+
+.contenedo-nuevo {
+    display:inline-block;            // Cambiado de inline-block a inline-flex
+    justify-content: center;        // Centra el contenido horizontalmente
+    align-items: center;  
+    flex: content;          /* lo mueve al extremo derecho */
+    margin: 10px 0;        /* un poco de espacio arriba y abajo */
+    /* estilos extras que quieras, por ejemplo: */
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 8px;
+    border-radius: 2px;
+    text-decoration: none;
+    align-items: center;  
+}
+
+.contenedor-padre {
+    display: flex;
+    justify-content: flex-end; /* Mueve el contenido (botón) a la derecha */
+}
+
+
+
+
+
+
