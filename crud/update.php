@@ -10,7 +10,7 @@ $succes = '';
 
 if ($id > 0) {
     // Obtener datos actuales de la tarea
-    $stmt = $conn->prepare("SELECT title, nombre, apellido FROM CRUD WHERE id = ?");
+    $stmt = $con->prepare("SELECT title, nombre, apellido FROM CRUD WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->bind_result($title, $nombre, $apellido);
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newNombre = trim($_POST['nombre']);
     $newApellido = trim($_POST['apellido']);
     if (!empty($newTitle)) {
-        $stmt = $conn->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ? WHERE id = ?");
+        $stmt = $con->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ? WHERE id = ?");
         $stmt->bind_param("sssi", $newTitle, $newNombre, $newApellido, $id);
         if ($stmt->execute()) {
             header("Location: ../index.php");
