@@ -44,6 +44,12 @@ $result = $con->query($sql);
                 <div class="contenedo-nuevo">
                     <a href="crud/create.php" class="button nuevo">Nuevo</a>
                 </div>
+                <!-- Formulario de búsqueda -->
+            <form method="GET" action="" style="margin-bottom: 20px;">
+                <input type="text" name="q" placeholder="Buscar tareas..."  ?>
+                <button type="submit">Buscar</button>
+            </form>
+
                 <div class="cuadro-tabla">
                     <table class="cuadro-crud">
                         <thead>

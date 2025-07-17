@@ -1,37 +1,55 @@
 <?php
-require '../db.php';
+    require '../db.php';
 
-$nombre = $apellido = $title = $descripcion = $estado = $fecha = '';
-$success = '';
-$error = '';
+    $nombre = $apellido = $title = $descripcion = '';
+    $completada = 0;
+    $success = '';
+    $error = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nombre']);
-    $apellido = trim($_POST['apellido']);
-    $title = trim($_POST['title']);
-    $descripcion = trim($_POST['descripcion']);
-    $estado = 'P'; // pendiente
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = trim($_POST['title']);
+        $estado_input = $_POST['estado'] ?? 'pendiente'; // valor por defecto
 
+        // Convertir estado a 0 o 1
+        if (strtolower($estado_input) === 'completada') {
+            $completed = 1;
+        } else {
+            $completed = 0;
+        }
 
+        if (!$title) {
+            $error = 'Por favor completa el título.';
+        } else {
+            $sql = "INSERT INTO crud (title, completada) VALUES (?, ?)";
+            $stmt = $con->prepare($sql);
 
-     // Si recibes un texto, conviértelo a un valor válido
-    $estado_input = $_POST['estado']; // por ejemplo, "pendiente"
-    
-    if (strtolower($estado_input) == 'pendiente') {
-        $estado = 'P';
-    } elseif (strtolower($estado_input) == 'completado') {
-        $estado = 'C';
-    } else {
-        $estado = 'P'; // valor por defecto o manejar error
+            if ($stmt === false) {
+                $error = "Error en la preparación: " . $con->error;
+            } else {
+                $stmt->bind_param("si", $title, $completada);
+
+                if ($stmt->execute()) {
+                    header('Location: ../index.php');
+                    exit(); // Muy importante para detener la ejecución
+                } else {
+                    $error = "Error al insertar: " . $stmt->error;
+                }
+
+                $stmt->close();
+            }
+        }
     }
-    
-    $stmt->close();
 
-
-}
-
-
+    function estadoTexto($code) {
+            return match($code) {
+                1 => 'Iniciada',
+                2 => 'En proceso',
+                3 => 'Completada',
+                default => 'Desconocido',
+            };
+        }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -79,12 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="Guardar">
 
         </form>
-        <label for="estado">Estado:</label>
+        <label for="estado">Estado:</label><br>
         <select name="estado" id="estado">
-            <option value="Iniciado">Iniciado</option>
-            <option value="En proceso">En proceso</option>
-            <option value="Completado">Completado</option>
-        </select>
+            <option value="1" <?= ($completada == 1) ? 'selected' : '' ?>>Iniciada</option>
+            <option value="2" <?= ($completada == 2) ? 'selected' : '' ?>>En proceso</option>
+            <option value="3" <?= ($completada == 3) ? 'selected' : '' ?>>Completada</option>
+        </select><br>
     </div>
     
     <div class="msg">
