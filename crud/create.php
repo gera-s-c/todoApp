@@ -10,26 +10,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $apellido = trim($_POST['apellido']);
     $title = trim($_POST['title']);
     $descripcion = trim($_POST['descripcion']);
-    $estado = 'P'; // pendiente
 
+    // Estado fijo al crear la tarea
+    $estado = 1;
 
-
-     // Si recibes un texto, conviértelo a un valor válido
-    $estado_input = $_POST['estado']; // por ejemplo, "pendiente"
-    
-    if (strtolower($estado_input) == 'pendiente') {
-        $estado = 'P';
-    } elseif (strtolower($estado_input) == 'completado') {
-        $estado = 'C';
+    $stmt = $con->prepare("INSERT INTO crud (nombre, apellido, title, descripcion, estado) VALUES (?, ?, ?, ?, ?)");
+    if ($stmt) {
+        $stmt->bind_param("ssssi", $nombre, $apellido, $title, $descripcion, $estado);
+        if ($stmt->execute()) {
+            // Redirigir al index después de insertar correctamente
+            header("Location: ../index.php");
+            exit;
+        } else {
+            $error = "Error al ejecutar la consulta: " . $stmt->error;
+        }
+        $stmt->close();
     } else {
-        $estado = 'P'; // valor por defecto o manejar error
+        $error = "Error al preparar la consulta: " . $con->error;
     }
-    
-    $stmt->close();
-
-
 }
-
 
 ?>
 
@@ -79,12 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="Guardar">
 
         </form>
-        <label for="estado">Estado:</label>
-        <select name="estado" id="estado">
-            <option value="Iniciado">Iniciado</option>
-            <option value="En proceso">En proceso</option>
-            <option value="Completado">Completado</option>
-        </select>
+
     </div>
     
     <div class="msg">
