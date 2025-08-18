@@ -86,14 +86,7 @@ if ($conn->connect_error) {
                 <nav class="navegacion">
                     <a href="/nosotros/nosotros.html">Nosotros</a>
                     <a href="/contactos/contactos.html">Contacto</a>
-                    <a href="#">Mi usuario</a>
-
-
-                <nav class="navegacion">
-                    <a href="/nosotros/nosotros.html">Nosotros</a>
-                    <a href="/contactos/contactos.html">Contacto</a>
                     <a href="/mi usuario/miUsuario.html">Mi usuario</a>
-                    <a href="/mi usuario/miUsuario.PHP">Mi usuario</a>
                 </nav>
             </div>
         </header>
@@ -152,11 +145,7 @@ if ($conn->connect_error) {
                     </table>
                 </div>    
                 <section class="informacion-general">
-                    <img src="src/img/paisaje.jpg" alt="Descripcion de la imagen">
-
-
-
-
+                    
             <main>
                 <p class="destacado">Lo mas destacado de la semana </p>
                 <section class="informacion-general">

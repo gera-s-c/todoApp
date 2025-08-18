@@ -63,7 +63,7 @@ $conn->close();
 
             <button type="submit">Entrar</button>
         </form>
-        <p>¿No tienes una cuenta? <a href="registor.php">Registrarse</a></p>
+        <p>¿No tienes una cuenta? <a href="registro.php">Registrarse</a></p>
         <p><a href="forgot_password.php">¿Olvidaste tu contraseña?</a></p>
     </div>
 </body>
