@@ -1,55 +1,36 @@
 <?php
-    require '../db.php';
+require '../db.php';
 
     $nombre = $apellido = $title = $descripcion = '';
-    $completada = 0;
+    $completada = 1; // Estado por defecto: iniciada
     $success = '';
     $error = '';
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nombre = trim($_POST['nombre']);
+        $apellido = trim($_POST['apellido']);
         $title = trim($_POST['title']);
-        $estado_input = $_POST['estado'] ?? 'pendiente'; // valor por defecto
-
-        // Convertir estado a 0 o 1
-        if (strtolower($estado_input) === 'completada') {
-            $completed = 1;
-        } else {
-            $completed = 0;
-        }
-
+        $descripcion = trim($_POST['descripcion']);
+        $completada = 1; // Fijamos "Iniciada" por defecto
         if (!$title) {
             $error = 'Por favor completa el título.';
         } else {
-            $sql = "INSERT INTO crud (title, completada) VALUES (?, ?)";
+            $sql = "INSERT INTO crud (nombre, apellido, title, descripcion, completada) VALUES (?, ?, ?, ?, ?)";
             $stmt = $con->prepare($sql);
-
             if ($stmt === false) {
                 $error = "Error en la preparación: " . $con->error;
             } else {
-                $stmt->bind_param("si", $title, $completada);
-
+                $stmt->bind_param("ssssi", $nombre, $apellido, $title, $descripcion, $completada);
                 if ($stmt->execute()) {
                     header('Location: ../index.php');
-                    exit(); // Muy importante para detener la ejecución
+                    exit();
                 } else {
                     $error = "Error al insertar: " . $stmt->error;
-                }
-
+                }            
                 $stmt->close();
             }
         }
     }
-
-    function estadoTexto($code) {
-            return match($code) {
-                1 => 'Iniciada',
-                2 => 'En proceso',
-                3 => 'Completada',
-                default => 'Desconocido',
-            };
-        }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -57,7 +38,7 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/build/css/app.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <title class="nuevo">Crear nueva tarea</title>
+        <title>Crear nueva tarea</title>
         <style>
             body { font-family: Arial; margin: 20px;}
             input[type="text"], textarea { width: 300px; padding: 8px; margin-bottom: 10px;}
@@ -77,41 +58,26 @@
         </style>
     </head>
     <body>
-
-    <div class="contenedor-tarea">
-        <h2>Crear nueva tarea</h2>
-
-        <form method="post" action="create.php" class="cuadro">
-            <label for="nombre">Nombre:</label><br>
-            <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($nombre) ?>"><br>
-
-            <label for="apellido">Apellido:</label><br>
-            <input type="text" name="apellido" id="apellido" value="<?= htmlspecialchars($apellido) ?>"><br>
-
-            <label for="title">Tarea a desarrollar (Título):</label><br>
-            <input type="text" name="title" id="title" value="<?= htmlspecialchars($title) ?>"><br>
-
-            <label for="descripcion">Descripción:</label><br>
-            <textarea name="descripcion" id="descripcion" rows="4"><?= htmlspecialchars($descripcion) ?></textarea><br>
-
-            <input type="submit" value="Guardar">
-
-        </form>
-        <label for="estado">Estado:</label><br>
-        <select name="estado" id="estado">
-            <option value="1" <?= ($completada == 1) ? 'selected' : '' ?>>Iniciada</option>
-            <option value="2" <?= ($completada == 2) ? 'selected' : '' ?>>En proceso</option>
-            <option value="3" <?= ($completada == 3) ? 'selected' : '' ?>>Completada</option>
-        </select><br>
-    </div>
-    
-    <div class="msg">
-        <?php if ($error): ?>
-            <p class="error"><?= $error ?></p>
-        <?php elseif ($success): ?>
-            <p class="success"><?= $success ?></p>
-        <?php endif; ?>
-    </div>
-
+        <div class="contenedor-tarea">
+            <h2>Crear nueva tarea</h2>
+            <form method="post" action="create.php" class="cuadro">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($nombre) ?>"><br>
+                <label for="apellido">Apellido:</label><br>
+                <input type="text" name="apellido" id="apellido" value="<?= htmlspecialchars($apellido) ?>"><br>
+                <label for="title">Tarea a desarrollar (Título):</label><br>
+                <input type="text" name="title" id="title" value="<?= htmlspecialchars($title) ?>"><br>
+                <label for="descripcion">Descripción:</label><br>
+                <textarea name="descripcion" id="descripcion" rows="4"><?= htmlspecialchars($descripcion) ?></textarea><br>
+                <input type="submit" value="Guardar">
+            </form>
+        </div>
+        <div class="msg">
+            <?php if ($error): ?>
+                <p class="error"><?= $error ?></p>
+            <?php elseif ($success): ?>
+                <p class="success"><?= $success ?></p>
+            <?php endif; ?>
+        </div>
     </body>
 </html>
