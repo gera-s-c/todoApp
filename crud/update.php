@@ -5,15 +5,16 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $nombre = '';
 $apellido = '';
 $title = '';
+$descripcion = '';
+$completada = 1;
 $error = '';
-$succes = '';
+$success = '';
 
 if ($id > 0) {
-    // Obtener datos actuales de la tarea
-    $stmt = $con->prepare("SELECT title, nombre, apellido FROM CRUD WHERE id = ?");
+    $stmt = $con->prepare("SELECT title, nombre, apellido, completada, descripcion FROM CRUD WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $stmt->bind_result($title, $nombre, $apellido);
+    $stmt->bind_result($title, $nombre, $apellido, $completada, $descripcion);
     if (!$stmt->fetch()) {
         $error = "Tarea no encontrada.";
     }
@@ -27,9 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newTitle = trim($_POST['title']);
     $newNombre = trim($_POST['nombre']);
     $newApellido = trim($_POST['apellido']);
+    $descripcion = trim($_POST['descripcion']);
+    $newEstado = intval($_POST['estado']);
+
     if (!empty($newTitle)) {
-        $stmt = $con->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ? WHERE id = ?");
-        $stmt->bind_param("sssi", $newTitle, $newNombre, $newApellido, $id);
+        $stmt = $con->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ?, completada = ?, descripcion = ? WHERE id = ?");
+        $stmt->bind_param("sssisi", $newTitle, $newNombre, $newApellido, $newEstado, $descripcion, $id);
         if ($stmt->execute()) {
             header("Location: ../index.php");
             exit;
@@ -56,18 +60,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p style="color:red;"><?= $error ?></p>
         <?php endif; ?>
 
-            <form method="post" action="cambiarEstado.php">
+            <form method="post">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($nombre) ?>"><br><br>
 
-        <form method="post">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" ><br><br>
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" ><br><br>
-            <label for="title">Título</label>
-            <input type="text" name="title" id="title" ><br><br>
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" id="apellido" value="<?= htmlspecialchars($apellido) ?>"><br><br>
+
+                <label for="title">Título</label>
+                <input type="text" name="title" id="title" value="<?= htmlspecialchars($title) ?>"><br><br>
+
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcion" id="descripcion" rows="4"><?= htmlspecialchars($descripcion) ?></textarea><br><br>
+
+                <label for="estado">Estado</label>
+                <select name="estado" id="estado">
+                <option value="1" <?= $completada == 1 ? 'selected' : '' ?>>Iniciada</option>
+                <option value="2" <?= $completada == 2 ? 'selected' : '' ?>>En proceso</option>
+                <option value="3" <?= $completada == 3 ? 'selected' : '' ?>>Completada</option>
+            </select><br><br>
+
             <input type="submit" value="Actualizar">
             <a href="../index.php">Cancelar</a>
         </form>
-
     </body>
 </html>
