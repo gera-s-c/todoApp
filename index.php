@@ -1,5 +1,13 @@
 <?php
 
+session_start(); // Siempre inicia la sesión al principio de la página
+
+
+if (!isset($_SESSION['user_id'])) {
+    // Redirige al usuario a la página de inicio de sesión
+    header("Location: /usuarios/inicioSesion.php"); // Asegúrate que esta ruta sea correcta
+    exit(); // Es crucial terminar la ejecución del script después de la redirección
+};
 
 require 'db.php';
 
@@ -9,36 +17,16 @@ $result = $con->query($sql);
 
 
 
-session_start(); // Siempre inicia la sesión al principio de la página
 
-// Comprueba si el usuario ha iniciado sesión.
-// Si la variable de sesión 'user_id' NO está configurada,
-// significa que el usuario no está logueado.
-if (!isset($_SESSION['user_id'])) {
-    // Redirige al usuario a la página de inicio de sesión
-    header("Location: /usuarios/inicioSesion.php"); // Asegúrate que esta ruta sea correcta
-    exit(); // Es crucial terminar la ejecución del script después de la redirección
-}
-
-// *** Si el código llega hasta aquí, el usuario ESTÁ logueado. ***
-// Ahora sí podemos definir variables de sesión y conectar a la base de datos, etc.
 
 $user_name = isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Usuario';
 $user_email = isset($_SESSION['user_email']) ? htmlspecialchars($_SESSION['user_email']) : 'No disponible';
 
-// *** MOVER LA CONEXIÓN Y EL CIERRE DE LA DB AQUÍ ***
-// Solo si planeas usar la conexión a la DB en esta página para algo.
-// Si solo la incluiste por inercia, lo mejor es quitarla.
-// Si ya tienes un 'db.php', es mejor usar 'require_once 'db.php';'
-// en lugar de redefinir la conexión aquí.
-
-// Ejemplo si mantienes la conexión aquí y la necesitas para algo:
-
 // Datos de conexión a la base de datos de Laragon
-$servername = "localhost"; // O 127.0.0.1
-$username = "root";        // Usuario de la base de datos en Laragon
-$password = "";            // Contraseña (vacía por defecto en Laragon)
-$dbname = "todoApp";       // ¡El nombre de tu base de datos en Laragon!
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "todoApp";       
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -48,11 +36,6 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// *** NO CERRAR LA CONEXIÓN INMEDIATAMENTE ***
-// Solo cierra la conexión si no vas a hacer más consultas EN ESTA PÁGINA.
-// Por ejemplo, al final de la página si hiciste consultas, o en el logout.
-// Si no haces consultas en index.php, puedes quitar la conexión por completo de aquí.
-// $conn->close(); // Si la cierras aquí, no podrás usarla para nada después.
 ?>
 
 <!DOCTYPE html>
@@ -84,8 +67,6 @@ if ($conn->connect_error) {
             <div class="contenedor contenido-header">
                 <h1>A Todo App</h1>
                 <nav class="navegacion">
-                    <a href="/nosotros/nosotros.html">Nosotros</a>
-                    <a href="/contactos/contactos.html">Contacto</a>
                     <a href="/mi usuario/miUsuario.html">Mi usuario</a>
                 </nav>
             </div>
@@ -182,7 +163,7 @@ if ($conn->connect_error) {
                     </p>
                 </section>      
             </main>
-            
+            <a href="usuarios/cierreSesion.php">Cerrar sesión</a>
         </div>
         <footer>
             <h1>Redes</h1>
@@ -190,8 +171,7 @@ if ($conn->connect_error) {
     </body>
 </html>
 <?php
-// Si conectaste a la DB y necesitas cerrarla al final de la página, hazlo aquí.
-// Pero en una página solo de display como esta, si no haces consultas, es redundante.
+
 if (isset($conn) && $conn->ping()) { // Comprueba si la conexión existe y es válida
     $conn->close();
 }
