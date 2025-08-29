@@ -73,9 +73,10 @@ if ($conn->connect_error) {
         </header>
         <div class="contenido-vertical">  
             <nav class="navegacion-vertical"> 
-                <a href="/comunidad/comonidad.html">Comunidad</a>
-                <a href="/noticias/noticias.html">Noticias</a>
-                <a href="/eventos/eventos.html">Eventos</a>
+                <a href="vistas/comunidad/comonidad.html">Comunidad</a>
+                <a href="vistas/noticias/noticias.html">Noticias</a>
+                <a href="vistas/eventos/eventos.html">Eventos</a>
+                <a href="vistas/nosotros/nosotros.html">Nosotros</a>
             </nav>
 
 
@@ -163,7 +164,6 @@ if ($conn->connect_error) {
                     </p>
                 </section>      
             </main>
-            <a href="usuarios/cierreSesion.php">Cerrar sesión</a>
         </div>
         <footer>
             <h1>Redes</h1>
