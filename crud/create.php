@@ -1,5 +1,5 @@
 <?php
-require '../db.php';
+    require '../db.php';
 
     $nombre = $apellido = $title = $descripcion = '';
     $completada = 1; // Estado por defecto: iniciada

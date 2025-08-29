@@ -1,16 +1,16 @@
 <?php
-require '../db.php';
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$nombre = '';
-$apellido = '';
-$title = '';
-$descripcion = '';
-$completada = 1;
-$error = '';
-$success = '';
-
-if ($id > 0) {
+    require '../db.php';
+    
+    $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $nombre = '';
+    $apellido = '';
+    $title = '';
+    $descripcion = '';
+    $completada = 1;
+    $error = '';
+    $success = '';
+    
+    if ($id > 0) {
     $stmt = $con->prepare("SELECT title, nombre, apellido, completada, descripcion FROM CRUD WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -19,12 +19,12 @@ if ($id > 0) {
         $error = "Tarea no encontrada.";
     }
     $stmt->close();
-} else {
+    } else {
     $error = "ID inválido.";
-}
-
-// Procesar actualización
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    }
+    
+    // Procesar actualización
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newTitle = trim($_POST['title']);
     $newNombre = trim($_POST['nombre']);
     $newApellido = trim($_POST['apellido']);
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "El título no puede estar vacío.";
     }
-}
+    }
 ?>
 
 <!DOCTYPE html>
