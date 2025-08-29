@@ -11,39 +11,39 @@
     $success = '';
     
     if ($id > 0) {
-    $stmt = $con->prepare("SELECT title, nombre, apellido, completada, descripcion FROM CRUD WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->bind_result($title, $nombre, $apellido, $completada, $descripcion);
-    if (!$stmt->fetch()) {
-        $error = "Tarea no encontrada.";
-    }
-    $stmt->close();
-    } else {
-    $error = "ID inválido.";
-    }
-    
-    // Procesar actualización
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newTitle = trim($_POST['title']);
-    $newNombre = trim($_POST['nombre']);
-    $newApellido = trim($_POST['apellido']);
-    $descripcion = trim($_POST['descripcion']);
-    $newEstado = intval($_POST['estado']);
-
-    if (!empty($newTitle)) {
-        $stmt = $con->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ?, completada = ?, descripcion = ? WHERE id = ?");
-        $stmt->bind_param("sssisi", $newTitle, $newNombre, $newApellido, $newEstado, $descripcion, $id);
-        if ($stmt->execute()) {
-            header("Location: ../index.php");
-            exit;
-        } else {
-            $error = "Error al actualizar la tarea: " . $stmt->error;
+        $stmt = $con->prepare("SELECT title, nombre, apellido, completada, descripcion FROM CRUD WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->bind_result($title, $nombre, $apellido, $completada, $descripcion);
+        if (!$stmt->fetch()) {
+            $error = "Tarea no encontrada.";
         }
         $stmt->close();
-    } else {
-        $error = "El título no puede estar vacío.";
-    }
+        } else {
+            $error = "ID inválido.";
+        }
+    
+        // Procesar actualización
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $newTitle = trim($_POST['title']);
+        $newNombre = trim($_POST['nombre']);
+        $newApellido = trim($_POST['apellido']);
+        $descripcion = trim($_POST['descripcion']);
+        $newEstado = intval($_POST['estado']);
+
+        if (!empty($newTitle)) {
+            $stmt = $con->prepare("UPDATE CRUD SET title = ?, nombre = ?, apellido = ?, completada = ?, descripcion = ? WHERE id = ?");
+            $stmt->bind_param("sssisi", $newTitle, $newNombre, $newApellido, $newEstado, $descripcion, $id);
+            if ($stmt->execute()) {
+                header("Location: ../index.php");
+                exit;
+            } else {
+                $error = "Error al actualizar la tarea: " . $stmt->error;
+            }
+            $stmt->close();
+        } else {
+            $error = "El título no puede estar vacío.";
+        }
     }
 ?>
 
